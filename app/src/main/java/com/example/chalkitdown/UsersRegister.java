@@ -21,24 +21,20 @@ import com.google.firebase.database.FirebaseDatabase;
 public class UsersRegister extends AppCompatActivity implements View.OnClickListener{
 
     private FirebaseAuth mAuth;
+
     private TextView registerButton;
     private EditText userFirstName, userLastName, userAge,
-            userEmail, userPhone, userFirstPassword, userConfirmPassword, userPhoneValidation;
+            userEmail, userPhone, userFirstPassword, userConfirmPassword;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_users_register);
 
-        mAuth = FirebaseAuth.getInstance();
-
-
+        mAuth = _Connexion.connect();
 
         registerButton = findViewById(R.id.buttonRegister);
         registerButton.setOnClickListener(this);
-
-
-
     }
 
     @Override
@@ -114,8 +110,6 @@ public class UsersRegister extends AppCompatActivity implements View.OnClickList
 
     public void UserInsert(String nom, String prenom, String age, String email, String tel, String password){
         try {
-
-
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -142,7 +136,6 @@ public class UsersRegister extends AppCompatActivity implements View.OnClickList
                             Toast.makeText(UsersRegister.this, "Echec de l'inscription !", Toast.LENGTH_LONG).show();
                         }
                     }
-
                 });
         }catch (Exception ex){
             Log.d("InsertUser", ex.toString());
