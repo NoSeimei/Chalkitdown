@@ -2,6 +2,9 @@ package com.example.chalkitdown;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +15,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.chalkitdown.databinding.ActivityAccueilBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -24,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button loginButton;
     private TextView inputLogin;
     private TextView inputPassword;
-
+    ActivityAccueilBinding binding;
     private TextView registerButton;
     private TextView forgottenButton;
 
@@ -46,7 +50,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         forgottenButton = (TextView) findViewById(R.id.textForgotPassword);
         forgottenButton.setOnClickListener(this);
+        binding = ActivityAccueilBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+
+        binding.bottomNavigationView.setOnItemSelectedListener(item -> {
+
+            switch (item.getItemId()){
+
+                case R.id.accueil:
+                    replaceFragment(new AccueilFragment());
+                    break;
+                case R.id.search:
+                    replaceFragment(new RechercheFragment());
+                    break;
+                case R.id.playlist:
+                    replaceFragment(new PlaylistFragment());
+                    break;
+            }
+
+            return true;
+        });
     }
+
+    private void replaceFragment(Fragment fragment){
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame_layout,fragment);
+        fragmentTransaction.commit();
+
+    }
+
 
     @Override
     public void onClick(View view) {
