@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Chalkitdown</string>
+    <string name="app_title">ChalkItDown</string>
+    <string name="forgotPasswordText"><u>Mot de passe oublié ?</u></string>
+    <string name="registerText"><u>S\'inscrire</u></string>
+    <string name="registerButton">S\'inscrire</string>
 </resources>

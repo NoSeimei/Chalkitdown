@@ -14,6 +14,12 @@
         android:theme="@style/Theme.Chalkitdown"
         tools:targetApi="31">
         <activity
+            android:name=".MdpOublie"
+            android:exported="false" />
+        <activity
+            android:name=".UsersRegister"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
