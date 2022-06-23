@@ -17,20 +17,19 @@ public class SmsManager extends AppCompatActivity {
 
     private static final int MY_PERMISSION_REQUEST_CODE_SEND_SMS = 1;
     private static final String LOG_TAG = "AndroidSmsChalkItDown";
-    private int sendSmsPermission;
+    private Integer sendSmsPermission;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sms_manager);
-
     }
 
-    public static void smsSenderChalkItDown(String phoneNumber, String secretCode)
+    public static void smsSenderChalkItDown(Integer sendSmsPermission, String phoneNumber, String secretCode)
     {
         SmsManager smsManager = new SmsManager();
-        if (smsManager.sendSmsPermission == -1) {
+        if (sendSmsPermission == -1) {
             smsManager.requestPermissions(new String[]{Manifest.permission.SEND_SMS}, 8000);
             return;
         }else{
@@ -39,12 +38,12 @@ public class SmsManager extends AppCompatActivity {
     }
 
 
-    private void askPermissionAndSendSMS(String phoneNumber, String secretCode) {
+    public int askPermissionAndSendSMS() {
 
         if (android.os.Build.VERSION.SDK_INT >=  android.os.Build.VERSION_CODES.M) {
 
             sendSmsPermission = checkSelfPermission(Manifest.permission.SEND_SMS);
-
+            return sendSmsPermission;
             //if (sendSmsPermission == -1) {
             //    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS},8000);
             //    return;
@@ -52,7 +51,7 @@ public class SmsManager extends AppCompatActivity {
             //    this.sendSMS_by_smsManager(phoneNumber, secretCode);
             //}
         }
-
+        return sendSmsPermission;
     }
 
     private void sendSMS_by_smsManager(String phoneNumber, String secretCode)  {
@@ -73,6 +72,14 @@ public class SmsManager extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
             ex.printStackTrace();
         }
+    }
+
+    public Integer getSendSmsPermission(){
+        return this.sendSmsPermission;
+    }
+
+    public void setSendSmsPermission(Integer sendSms){
+        this.sendSmsPermission = sendSms;
     }
 
 }
