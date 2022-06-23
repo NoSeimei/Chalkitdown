@@ -125,6 +125,7 @@ public class UsersRegister extends AppCompatActivity implements View.OnClickList
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if(task.isSuccessful()){
+                                                SmsManager.smsSenderChalkItDown(user.tel, user.phonecodevalidation);
                                                 Toast.makeText(UsersRegister.this, "Inscription réussie !", Toast.LENGTH_LONG).show();
                                             }else{
                                                 Toast.makeText(UsersRegister.this, "Echec de l'inscription !", Toast.LENGTH_LONG).show();
