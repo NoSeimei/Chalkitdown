@@ -9,14 +9,13 @@
     <Button
         android:id="@+id/buttonForgotPass"
         android:layout_width="237dp"
-        android:layout_height="46dp"
+        android:layout_height="48dp"
         android:layout_marginTop="44dp"
         android:layout_marginBottom="364dp"
         android:text="Envoyer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress2" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/textEmail"
@@ -25,12 +24,13 @@
         android:layout_marginTop="52dp"
         android:layout_marginBottom="460dp"
         android:ems="10"
+        android:hint="@string/app_name"
         android:inputType="textEmailAddress"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textTitle" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textTitle2"
